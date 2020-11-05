@@ -2,7 +2,7 @@
  * @Author: xujintai
  * @Date: 2020-11-05 08:24:14
  * @LastEditors: xujintai
- * @LastEditTime: 2020-11-05 15:53:22
+ * @LastEditTime: 2020-11-05 16:56:46
  * @Description: 文件说明
 -->
 <template>
@@ -10,7 +10,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box ">
-        <img src="~assets/logo.png" alt="">
+        <img src="~assets/img/hzw.jpg" alt="">
       </div>
       <!-- 登录表单区域 -->
       <el-form :model="FormData" status-icon :rules="dataRules" ref="LoginForm">
