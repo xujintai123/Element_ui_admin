@@ -9,8 +9,8 @@
   <el-container>
     <!-- 页面头部区域 -->
     <el-header>
-      <div>
-        <img src="~assets/img/hzw.jpg" alt="">
+      <div class="header-img">
+        <img src="~assets/img/hzw.jpg" alt />
         <span>CodeXJT</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -18,22 +18,46 @@
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside width="200px">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff"
-          active-text-color="#ffd04b">
-          <el-submenu index="1">
+      <el-aside :width="(isCollapse?'45px':'200px')">
+        <el-menu
+          router
+          :collapse-transition="false"
+          :collapse="isCollapse"
+          unique-opened
+          background-color="#333744"
+          text-color="#fff"
+          active-text-color="#409BFF"
+        >
+          <div class="close" @click="closeMenu">
+            <i class="el-icon-d-caret"></i>
+          </div>
+          <!-- 一级菜单  循环遍历menusData(每个item)-->
+          <el-submenu :index="item.id+''" v-for="item in menusData" :key="item.id">
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>导航一</span>
+              <!-- 图标 -->
+              <i :class="icons[item.id]"></i>
+              <!-- 文本 -->
+              <span>{{item.authName}}</span>
             </template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
+
+            <!-- 二级菜单  循环遍历(item的children数组) -->
+            <el-menu-item
+              :index="item.path+'/'"
+              v-for="children in item.children"
+              :key="children.id"
+            >
+              <!-- 图标 -->
+              <i class="el-icon-menu"></i>
+              <!-- 文本 -->
+              <span>{{children.authName}}</span>
+            </el-menu-item>
           </el-submenu>
         </el-menu>
-
       </el-aside>
       <!-- 右侧内容 -->
       <el-main>
-
+        <!-- 路由占位符 -->
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -41,6 +65,16 @@
 
 <script>
 export default {
+data(){
+return {
+  //左侧菜单数据
+  menusData:null,
+  //一级菜单图标
+  icons:{125:'el-icon-s-custom',103:'el-icon-s-grid',101:'el-icon-s-cooperation',102:'el-icon-s-order',145:'el-icon-s-platform'},
+  //折叠菜单栏
+  isCollapse:false
+}
+},
 methods:{
     logout(){
         //清空token
@@ -54,14 +88,36 @@ methods:{
                       duration:1500
                     });
         },
-       //侧边菜单栏
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+ 
+      //折叠左侧菜单栏
+      closeMenu(){
+        this.isCollapse=! this.isCollapse
       },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
+      
+      //获取接口数据方法
+        getMenusData(){
+          this.$http.get('menus').then(res=>{
+            const data=res.data
+            //侧边栏数据请求成功;赋值给menusData
+            if(data.meta.status===200){
+              this.menusData=data.data
+              console.log(this.menusData);
+            }
+            //数据请求失败
+            else{
+            this.$message({
+                      message: '服务器繁忙',
+                      center: true,
+                      type:'error',
+                      duration:1500
+                    });
+            }})
+        }
+},
+     //生命周期函数
+   created () {
+       this.getMenusData();
       }
-}
 
 }
 </script>
@@ -77,7 +133,7 @@ methods:{
      justify-content: space-between; ;
      background-color: #373D41;  
 
-     div {
+   .header-img {
        display: flex;
        justify-content: space-between; ;
        align-items: center;
@@ -98,6 +154,18 @@ methods:{
 
     .el-aside {
      background-color: #333744;  
+    //el-menu默认有一个1px的border-right右边框，将它取消掉
+       .el-menu {
+         height: 100%;
+         border-right: none;
+
+         .close{
+           line-height:50px;
+           text-align: center;
+           color: white;
+           height: 6%;
+         }
+       }
      }
      
     .el-main {

@@ -9,24 +9,20 @@ import axios from 'axios'
 
 // axios实例
 const http = axios.create({
-    timeout: 1000 * 30,
-    baseURL: 'http://119.23.53.78:8888/api/private/v1/',
-    // withCredentials: true,
-    // headers: {
-    //   'Content-Type': 'application/json; charset=utf-8'
-    // }
-  })
+  timeout: 1000 * 30,
+  baseURL: 'http://119.23.53.78:8888/api/private/v1/',
+  // withCredentials: true,
+  // headers: {
+  //   'Content-Type': 'application/json; charset=utf-8'
+  // }
+})
 
 // axios请求拦截
-axios.interceptors.request.use(function (config) {
-    //做拦截处理，添加token验证的Authorization字段
-    config.headers.Authorization=window.sessionStorage.getItem('token')
-    console.log(config);
-    return config;
-  }, function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  });
+http.interceptors.request.use(function (config) {
+  //做拦截处理，添加token验证的Authorization字段
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config;
+});
 
-  
-  export default http
+
+export default http
