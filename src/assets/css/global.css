@@ -1,8 +1,22 @@
 /* 全局样式表 */
 html,
 body,
-#app{
+#app {
   height: 100%;
   padding: 0;
   margin: 0;
 }
+
+  .el-breadcrumb {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 12px;
+  }
+
+  .el-card {
+    box-shadow: 0 1px 1px rgba(0,0, 0, 0.15)!important;
+  }
+  
+  .el-pagination {
+    margin-top: 20px;
+  }

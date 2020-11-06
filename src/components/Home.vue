@@ -27,6 +27,7 @@
           background-color="#333744"
           text-color="#fff"
           active-text-color="#409BFF"
+          :default-active="activePath"
         >
           <div class="close" @click="closeMenu">
             <i class="el-icon-d-caret"></i>
@@ -42,9 +43,10 @@
 
             <!-- 二级菜单  循环遍历(item的children数组) -->
             <el-menu-item
-              :index="item.path+'/'"
+              :index="'/'+children.path"
               v-for="children in item.children"
               :key="children.id"
+              @click=" saveNavState"
             >
               <!-- 图标 -->
               <i class="el-icon-menu"></i>
@@ -72,15 +74,21 @@ return {
   //一级菜单图标
   icons:{125:'el-icon-s-custom',103:'el-icon-s-grid',101:'el-icon-s-cooperation',102:'el-icon-s-order',145:'el-icon-s-platform'},
   //折叠菜单栏
-  isCollapse:false
+  isCollapse:false,
+  activePath:''
 }
 },
+ //生命周期函数
+created(){
+ //获取侧边栏数据
+ this.getMenusData();
+    },
 methods:{
     logout(){
         //清空token
         window.sessionStorage.clear()
         //跳转到登录页
-        this.$router.push('/login/')
+        this.$router.push('/login')
         this.$message({
                       message: '退出登录',
                       center: true,
@@ -93,6 +101,11 @@ methods:{
       closeMenu(){
         this.isCollapse=! this.isCollapse
       },
+      //获取当前活跃的route
+      saveNavState(path){
+        this.activePath=this.$route.path
+      },
+
       
       //获取接口数据方法
         getMenusData(){
@@ -101,7 +114,7 @@ methods:{
             //侧边栏数据请求成功;赋值给menusData
             if(data.meta.status===200){
               this.menusData=data.data
-              console.log(this.menusData);
+
             }
             //数据请求失败
             else{
@@ -114,10 +127,6 @@ methods:{
             }})
         }
 },
-     //生命周期函数
-   created () {
-       this.getMenusData();
-      }
 
 }
 </script>

@@ -9,18 +9,27 @@
   <div class="login_container">
     <div class="login_box">
       <!-- 头像区域 -->
-      <div class="avatar_box ">
-        <img src="~assets/img/hzw.jpg" alt="">
+      <div class="avatar_box">
+        <img src="~assets/img/hzw.jpg" alt />
       </div>
       <!-- 登录表单区域 -->
       <el-form :model="FormData" status-icon :rules="dataRules" ref="LoginForm">
         <!-- 用户名区域 -->
         <el-form-item prop="username">
-          <el-input prefix-icon="el-icon-user-solid" placeholder="请输入用户名" v-model="FormData.username"></el-input>
+          <el-input
+            prefix-icon="el-icon-user-solid"
+            placeholder="请输入用户名"
+            v-model="FormData.username"
+          ></el-input>
         </el-form-item>
         <!-- 密码区域 -->
         <el-form-item prop="password">
-          <el-input prefix-icon="el-icon-lock" type="password" placeholder="请输入密码" v-model="FormData.password"></el-input>
+          <el-input
+            prefix-icon="el-icon-lock"
+            type="password"
+            placeholder="请输入密码"
+            v-model="FormData.password"
+          ></el-input>
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
@@ -28,7 +37,6 @@
           <el-button type="info" @click="resetLoginForm('LoginForm')">重置</el-button>
         </el-form-item>
       </el-form>
-
     </div>
   </div>
 </template>
