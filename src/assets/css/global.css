@@ -5,6 +5,8 @@ body,
   height: 100%;
   padding: 0;
   margin: 0;
+  /* 设置最小宽度，低于宽度时出现滚动条（不能再缩放），强制为1366px */
+  min-width:1366px ;
 }
 
   .el-breadcrumb {
@@ -19,4 +21,9 @@ body,
   
   .el-pagination {
     margin-top: 20px;
+  }
+
+  .el-row {
+    display: flex;
+    align-items: center;
   }
