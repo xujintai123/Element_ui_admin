@@ -1,3 +1,10 @@
+<!--
+ * @Author: xujintai
+ * @Date: 2020-11-09 08:24:44
+ * @LastEditors: xujintai
+ * @LastEditTime: 2020-11-09 13:51:29
+ * @Description: 文件说明
+-->
 <template>
   <div id="rights">
     <!-- 面包屑区域 -->
@@ -24,11 +31,7 @@
     </el-card>
   </div>
 </template>
-        </el-table-column>
-      </el-table>
-    </el-card>
-  </div>
-</template>
+  
 
 <script>
 export default {
@@ -50,7 +53,7 @@ methods:{
     }
 
     this.rightsList=res.data
-    console.log(this.rightsList);
+    // console.log(this.rightsList);
   }
 }
 }

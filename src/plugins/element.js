@@ -2,7 +2,7 @@
  * @Author: xujintai
  * @Date: 2020-11-05 08:24:14
  * @LastEditors: xujintai
- * @LastEditTime: 2020-11-05 17:18:30
+ * @LastEditTime: 2020-11-09 15:03:50
  * @Description: 文件说明
  */
 import Vue from 'vue'
@@ -31,7 +31,10 @@ import {
     Pagination,
     Dialog,
     MessageBox,
-    Tag
+    Tag,
+    Tree,
+    Select,
+    Option
 } from 'element-ui'
 
 Vue.use(Button)
@@ -57,6 +60,10 @@ Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(Tag)
+Vue.use(Tree)
+Vue.use(Select)
+Vue.use(Option)
+
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

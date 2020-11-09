@@ -27,3 +27,9 @@ body,
     display: flex;
     align-items: center;
   }
+
+ .dialog-footer {
+    display: flex;
+   justify-content: center;
+ }
+
