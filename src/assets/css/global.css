@@ -33,3 +33,6 @@ body,
    justify-content: center;
  }
 
+.el-table {
+margin-top: 15px;
+ }

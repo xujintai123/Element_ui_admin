@@ -24,12 +24,12 @@
     <!-- 用户列表区域 -->
     <el-table :data="userList" style="width: 100%" border stripe>
       <!-- 索引列 -->
-      <el-table-column label="#" type="index"></el-table-column>
-      <el-table-column label="日期" prop="create_time" width="180" align="center"></el-table-column>
-      <el-table-column label="用户名" prop="username" width="180" align="center"></el-table-column>
-      <el-table-column label="邮箱" prop="email" width="180" align="center"></el-table-column>
-      <el-table-column label="电话" prop="mobile" width="180" align="center"></el-table-column>
-      <el-table-column label="角色" prop="role_name" width="180" align="center"></el-table-column>
+      <el-table-column label="#" type="index" align="center"></el-table-column>
+      <el-table-column label="日期" prop="create_time" width="200" align="center"></el-table-column>
+      <el-table-column label="用户名" prop="username" width="200" align="center"></el-table-column>
+      <el-table-column label="邮箱" prop="email" width="200" align="center"></el-table-column>
+      <el-table-column label="电话" prop="mobile" width="200" align="center"></el-table-column>
+      <el-table-column label="角色" prop="role_name" width="200" align="center"></el-table-column>
       <el-table-column label="状态" width="180" align="center">
         <!-- 作用域插槽 -->
         <template slot-scope="scope">
@@ -40,7 +40,12 @@
         <template slot-scope="scope">
           <!-- 修改按钮 -->
           <el-tooltip class="item" effect="dark" content="修改" placement="top" :enterable="false">
-            <el-button type="success" icon="el-icon-edit" size="small" @click="modifyUserById(scope.row.id)"></el-button>
+            <el-button
+              type="success"
+              icon="el-icon-edit"
+              size="small"
+              @click="modifyUserById(scope.row.id)"
+            ></el-button>
           </el-tooltip>
           <!-- 分配角色按钮 -->
           <el-tooltip class="item" effect="dark" content="分配角色" placement="top" :enterable="false">
@@ -48,17 +53,35 @@
           </el-tooltip>
           <!-- 删除按钮 -->
           <el-tooltip class="item" effect="dark" content="删除" placement="top" :enterable="false">
-            <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
+            <el-button
+              type="danger"
+              icon="el-icon-delete"
+              size="small"
+              @click="removeUserById(scope.row.id)"
+            ></el-button>
           </el-tooltip>
         </template>
       </el-table-column>
     </el-table>
     <!-- 底部分页区域 -->
-    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryInfo.pagenum" :page-sizes="[ 5, 10, 20]"
-      :page-size="queryInfo.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="queryInfo.pagenum"
+      :page-sizes="[ 5, 10, 20]"
+      :page-size="queryInfo.pagesize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+    ></el-pagination>
 
     <!-- 添加用户的dialog对话框 -->
-    <el-dialog center title="添加用户" :visible.sync="addUserDialog" @close="addDialogClosed" width="50%">
+    <el-dialog
+      center
+      title="添加用户"
+      :visible.sync="addUserDialog"
+      @close="addDialogClosed"
+      width="50%"
+    >
       <!-- 内容主题区域 -->
       <el-form label-width="80px" ref="addFormRef" :rules="addFormRules" :model="addForm">
         <el-form-item label="用户名" prop="username">
@@ -82,7 +105,13 @@
     </el-dialog>
 
     <!-- 修改用户的dialog对话框 -->
-    <el-dialog center title="修改用户信息" :visible.sync="editDialogVisible" @close="editDialogClosed" width="50%">
+    <el-dialog
+      center
+      title="修改用户信息"
+      :visible.sync="editDialogVisible"
+      @close="editDialogClosed"
+      width="50%"
+    >
       <!-- 内容主题区域 -->
       <el-form label-width="80px" ref="editFormRef" :rules="addFormRules" :model="editForm">
         <el-form-item label="用户名" prop="username">
@@ -103,17 +132,28 @@
     </el-dialog>
 
     <!-- 分配角色的dialog对话框 -->
-    <el-dialog center class="el-dialog-setRole" @close="closeSetRoleDialog" title="分配角色" :visible.sync="setRoleDialogVisible" width="50%">
+    <el-dialog
+      center
+      class="el-dialog-setRole"
+      @close="closeSetRoleDialog"
+      title="分配角色"
+      :visible.sync="setRoleDialogVisible"
+      width="50%"
+    >
       <!-- 内容主题区域 -->
       <div class="fatherSetRole">
         <div class="setRole">
-          <div> 当前用户：{{userInfo.username}}</div>
-          <div> 当前角色：{{userInfo.role_name}}</div>
+          <div>当前用户：{{userInfo.username}}</div>
+          <div>当前角色：{{userInfo.role_name}}</div>
           <!-- slect选择器 -->
           <div>
             <el-select v-model="selectedRoleId" placeholder="请选择">
-              <el-option v-for="item in roleList" :key="item.id" :label="item.roleName" :value="item.roleDesc">
-              </el-option>
+              <el-option
+                v-for="item in roleList"
+                :key="item.id"
+                :label="item.roleName"
+                :value="item.roleDesc"
+              ></el-option>
             </el-select>
           </div>
         </div>
