@@ -12,7 +12,12 @@
         <!-- 展开列 -->
         <el-table-column type="expand" class="expand-table">
           <template slot-scope="scope">
-            <el-row :class="['bd-bottom',index===0?'bd-top':'']" :gutter="20" v-for="(item1,index) in scope.row.children" :key="item1.id">
+            <el-row
+              :class="['bd-bottom',index===0?'bd-top':'']"
+              :gutter="20"
+              v-for="(item1,index) in scope.row.children"
+              :key="item1.id"
+            >
               <!-- 渲染一级菜单 -->
               <el-col :span="6">
                 <el-tag @close="removeRightById(item1.id,scope.row)" closable>{{item1.authName}}</el-tag>
@@ -21,17 +26,29 @@
 
               <!-- 渲染二三级菜单 -->
               <el-col :span="18">
-                <el-row :class="[index!==0?'bd-top':'']" v-for="(item2,index) in item1.children" :key="item2.id">
+                <el-row
+                  :class="[index!==0?'bd-top':'']"
+                  v-for="(item2,index) in item1.children"
+                  :key="item2.id"
+                >
                   <el-col :span="8">
                     <!-- 通过for循环渲染二级权限 -->
-                    <el-tag @close="removeRightById(item2.id,scope.row)" closable type="success">{{item2.authName}}</el-tag>
+                    <el-tag
+                      @close="removeRightById(item2.id,scope.row)"
+                      closable
+                      type="success"
+                    >{{item2.authName}}</el-tag>
                     <i class="el-icon-caret-right"></i>
                   </el-col>
                   <el-col :span="12">
                     <!-- 通过for循环渲染三级权限 -->
-                    <el-tag @close="removeRightById(item3.id,scope.row)" closable type="warning" v-for="item3 in item2.children" :key="item3.id">
-                      {{item3.authName}}
-                    </el-tag>
+                    <el-tag
+                      @close="removeRightById(item3.id,scope.row)"
+                      closable
+                      type="warning"
+                      v-for="item3 in item2.children"
+                      :key="item3.id"
+                    >{{item3.authName}}</el-tag>
                   </el-col>
                 </el-row>
               </el-col>
@@ -46,7 +63,12 @@
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" size="mini">编辑</el-button>
             <el-button type="danger" icon="el-icon-delete" size="mini">删除</el-button>
-            <el-button @click="showSetRightDialog(scope.row)" type="warning" icon="el-icon-share" size="mini">分配权限</el-button>
+            <el-button
+              @click="showSetRightDialog(scope.row)"
+              type="warning"
+              icon="el-icon-share"
+              size="mini"
+            >分配权限</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -55,13 +77,20 @@
     <!-- 展示分配权限的对话框 -->
     <el-dialog title="分配权限" :visible.sync=" SetRightDialogVisible" width="50%">
       <!-- 树形控件 -->
-      <el-tree ref="treeRef" :default-checked-keys="defKeys" :data="rightsList" :props="treeProps" show-checkbox default-expand-all node-key="id"></el-tree>
+      <el-tree
+        ref="treeRef"
+        :default-checked-keys="defKeys"
+        :data="rightsList"
+        :props="treeProps"
+        show-checkbox
+        default-expand-all
+        node-key="id"
+      ></el-tree>
       <span slot="footer">
         <el-button @click="SetRightDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="allotRights">确 定</el-button>
       </span>
     </el-dialog>
-
   </div>
 </template>
 

@@ -6,7 +6,7 @@
       <el-breadcrumb-item>商品管理</el-breadcrumb-item>
       <el-breadcrumb-item>商品列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <!-- 卡片区域 -->
+    <!-- 卡片视图 -->
     <el-card>
       <el-button type="primary" @click="showCateDialog">添加分类</el-button>
 
