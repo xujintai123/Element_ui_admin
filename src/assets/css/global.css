@@ -29,10 +29,15 @@ body,
   }
 
  .dialog-footer {
-    display: flex;
+   display: flex;
    justify-content: center;
  }
 
 .el-table {
-margin-top: 15px;
+   margin-top: 15px;
  }
+
+
+ .el-cascader-menu {
+  height: 400px;
+} 
