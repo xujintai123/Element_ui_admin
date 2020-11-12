@@ -10,19 +10,8 @@
     <el-card>
       <el-button type="primary" @click="showCateDialog">添加分类</el-button>
 
-      <table-tree
-        class="table-tree"
-        index-text="#"
-        :expand-type="false"
-        :selection-type="false"
-        align="center"
-        headerAlign="center"
-        show-index
-        border
-        stripe
-        :data="cateList"
-        :columns="columns"
-      >
+      <table-tree class="table-tree" index-text="#" :expand-type="false" :selection-type="false" align="center" headerAlign="center" show-index border stripe
+        :data="cateList" :columns="columns">
         <!-- 是否有效 -->
         <template slot="delete" scope="scope">
           <i v-if="scope.row.cat_deleted===true" class="el-icon-error" style="color:green"></i>
@@ -38,47 +27,20 @@
 
         <!-- 操作 -->
         <template slot="option" scope="scope">
-          <el-button
-            size="mini"
-            type="primary"
-            icon="el-icon-edit"
-            @click="editCateName(scope.row.cat_id)"
-          >编辑</el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            icon="el-icon-delete"
-            @click="deleteCateName(scope.row.cat_id)"
-          >删除</el-button>
+          <el-button size="mini" type="primary" icon="el-icon-edit" @click="editCateName(scope.row.cat_id)">编辑</el-button>
+          <el-button size="mini" type="danger" icon="el-icon-delete" @click="deleteCateName(scope.row.cat_id)">删除</el-button>
         </template>
       </table-tree>
 
       <!-- 页码区域 -->
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="query.pagenum"
-        :page-sizes="[5,10,15, 20]"
-        :page-size="query.pagesize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      ></el-pagination>
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="query.pagenum" :page-sizes="[5,10,15, 20]"
+        :page-size="query.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
     </el-card>
 
     <!-- 添加分类对话框 -->
-    <el-dialog
-      title="添加分类"
-      :visible.sync="addCateDialogVisible"
-      width="50%"
-      @close="addCateDialogClose"
-    >
+    <el-dialog title="添加分类" :visible.sync="addCateDialogVisible" width="50%" @close="addCateDialogClose">
       <!-- 添加分类的表单 -->
-      <el-form
-        :model="addCateForm"
-        ref="addCateFormRef"
-        label-width="100px"
-        :rules="addCateFormRules"
-      >
+      <el-form :model="addCateForm" ref="addCateFormRef" label-width="100px" :rules="addCateFormRules">
         <el-form-item label="分类名称:" prop="cat_name">
           <el-input v-model="addCateForm.cat_name"></el-input>
         </el-form-item>
@@ -86,14 +48,8 @@
         <el-form-item label="父级分类:" prop="cat_name">
           <!-- options用来指定数据源 -->
           <!-- props用来指定配置对象 :props="{value:"", label:"",children:""}"-->
-          <el-cascader
-            clearable
-            v-model="selectedKeys"
-            :options="parentCateList"
-            :props="{value:'cat_id', label:'cat_name',children:'children',checkStrictly:true}"
-            @change="parentCateChange"
-            expandTrigger="hover"
-          ></el-cascader>
+          <el-cascader clearable v-model="selectedKeys" :options="parentCateList"
+            :props="{value:'cat_id', label:'cat_name',children:'children',checkStrictly:true}" @change="parentCateChange" expandTrigger="hover"></el-cascader>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -103,19 +59,9 @@
     </el-dialog>
 
     <!-- 编辑分类对话框 -->
-    <el-dialog
-      title="编辑分类名称"
-      :visible.sync="editCateDialogVisible"
-      width="50%"
-      @close="editCateDialogClose"
-    >
+    <el-dialog title="编辑分类名称" :visible.sync="editCateDialogVisible" width="50%" @close="editCateDialogClose">
       <!-- 编辑分类的表单 -->
-      <el-form
-        :model="editCateForm"
-        ref="editCateFormRef"
-        label-width="100px"
-        :rules="editCateFormRules"
-      >
+      <el-form :model="editCateForm" ref="editCateFormRef" label-width="100px" :rules="editCateFormRules">
         <el-form-item label="分类名称:" prop="cat_name">
           <el-input v-model="editCateForm.cat_name"></el-input>
         </el-form-item>

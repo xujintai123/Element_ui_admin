@@ -17,12 +17,8 @@
         <el-col>
           <span>选择商品分类</span>
           <!-- 级联选择器 -->
-          <el-cascader
-            @change="selectedCateChange"
-            v-model="selectedCateKeys"
-            :options="cateList"
-            :props="{value:'cat_id', label:'cat_name',children:'children', expandTrigger: 'hover' }"
-          ></el-cascader>
+          <el-cascader @change="selectedCateChange" v-model="selectedCateKeys" :options="cateList"
+            :props="{value:'cat_id', label:'cat_name',children:'children', expandTrigger: 'hover' }"></el-cascader>
         </el-col>
       </el-row>
 
@@ -31,7 +27,7 @@
         <!-- 添加动态参数的模板 -->
         <el-tab-pane label="动态参数" name="many">
           <!-- 添加参数的按钮 -->
-          <el-button type="primary" :disabled="tabIsDisabled">添加属性</el-button>
+          <el-button type="primary" :disabled="tabIsDisabled" @click="btnAddParam">添加参数</el-button>
 
           <!-- 动态参数的表格 -->
           <el-table border :data="manyTableData" stripe style="width: 100%">
@@ -53,7 +49,7 @@
         <!-- 添加静态属性的模板 -->
         <el-tab-pane label="静态属性" name="only">
           <!-- 添加属性的按钮 -->
-          <el-button type="primary" :disabled="tabIsDisabled">添加参数</el-button>
+          <el-button type="primary" :disabled="tabIsDisabled" @click="btnAddAttributes">添加属性</el-button>
 
           <!-- 静态属性的表格 -->
           <el-table border :data="onlyTableData" stripe style="width: 100%">
@@ -73,6 +69,21 @@
         </el-tab-pane>
       </el-tabs>
     </el-card>
+
+    <!-- Dialog对话框（根据 activeTabName）动态决定对话框为动态参数还是静态属性 -->
+    <el-dialog :title="activeTabName==='many'?'添加动态参数':'添加静态属性'" :visible.sync="addParamsFormVisible" width="50%">
+      <!-- 验证表单数据 -->
+      <el-form :model="addParamsForm" :rules="addParamsFormRules" ref="addParamsForm" label-width="100px">
+        <el-form-item :label="activeTabName==='many'?'动态参数':'静态属性'" prop="name">
+          <el-input v-model="addParamsForm.name"></el-input>
+        </el-form-item>
+      </el-form>
+      <!-- 底部按钮 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="addParamsFormVisible  = false">取 消</el-button>
+        <el-button type="primary" @click="addParamsFormData">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -88,6 +99,20 @@ data(){
       activeTabName:'many',
       manyTableData:[],
       onlyTableData:[],
+      //添加参数属性的对话框是否显示
+      addParamsFormVisible:false,
+      //dialog对话框表单数据
+       addParamsForm:{
+           attr_name:'',
+           attr_sel:'',
+           attr_vals:'',
+       },
+       addParamsFormRules:{
+         name:[
+              { required: true, message: '内容不能为空'},
+              { min:1,max:10, message: '内容在1到10个字符之间'}
+           ]
+       }
  
   }
 },
@@ -114,7 +139,7 @@ methods:{
       const {data:res} = await this.$http.get(`categories/${this.selectedCateKeys[2]}/attributes`,{
       params:{sel:this.activeTabName}
       })
-console.log(res);
+
       if(res.meta.status!==200) 
          return this.$message.error('服务器繁忙，数据请求失败')
       
@@ -124,8 +149,6 @@ console.log(res);
         } else {
            this.onlyTableData = res.data
         }
-       
-
    },
    //级联选择框内值变化触发这个事件
     async selectedCateChange(){  
@@ -134,7 +157,27 @@ console.log(res);
     //tab栏按钮点击触发这个事件
     TabClick(){
     this.getParmsData()
+    },
+    //顶部添加属性按钮
+    btnAddAttributes(){
+      this.addParamsFormVisible=true;
+    },
+    //顶部添加参数按钮
+    btnAddParam(){
+      this.addParamsFormVisible=true;
+    },
+    //添加动态参数或静态属性
+    addParamsFormData(){
+     this.$refs.addParamsForm.validate(valid=>{
+         if(!valid) 
+         return this.$message.error('提交数据不符合规范!')
+     
+         this.$http.
+         this.addParamsFormVisible = false
+     })
+  
     }
+   
 },
 computed:{
   tabIsDisabled(){ 
