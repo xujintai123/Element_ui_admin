@@ -147,7 +147,7 @@ export default {
    },
    //跳转到Add页面
   goAddPage(){
-    this.$router.push('/add')
+    this.$router.push('/goods/add')
   }
   
   } 

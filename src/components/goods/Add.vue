@@ -39,15 +39,15 @@
             </el-form-item>
             <!-- 商品价格输入框 -->
             <el-form-item label="商品价格" prop="goods_price">
-              <el-input v-model="goodsAddForm.goods_price" type="number"></el-input>
+              <el-input v-model="goodsAddForm.goods_price" type="number" min="0"></el-input>
             </el-form-item>
             <!-- 商品重量输入框 -->
             <el-form-item label="商品重量" prop="goods_weight">
-              <el-input v-model="goodsAddForm.goods_weight" type="number"></el-input>
+              <el-input v-model="goodsAddForm.goods_weight" type="number" min="0"></el-input>
             </el-form-item>
             <!-- 商品数量输入框 -->
             <el-form-item label="商品数量" prop="goods_number">
-              <el-input v-model="goodsAddForm.goods_number" type="number"></el-input>
+              <el-input v-model="goodsAddForm.goods_number" type="number" min="1"></el-input>
             </el-form-item>
 
             <!-- 商品分类复选框 -->
@@ -248,7 +248,8 @@ methods:{
     //处理图片预览效果
     imgPreview(file){
       //处理图片url路径
-      this.imgPath = file.response.data.url.replace('127.0.0.1', '119.23.53.78')
+      // this.imgPath = file.response.data.url.replace('127.0.0.1', '119.23.53.78')
+      this.imgPath = file.response.data.url.replace('127.0.0.1', 'www.liulongbin.top')
       this.imgIsVisiable = true
     },
    //处理移除图片操作

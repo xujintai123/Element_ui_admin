@@ -10,7 +10,7 @@ import axios from 'axios'
 // axios实例
 const http = axios.create({
   timeout: 1000 * 30,
-  baseURL: 'http://119.23.53.78:8888/api/private/v1/',
+  baseURL: 'https://www.liulongbin.top:8888/api/private/v1/',
   // https://www.liulongbin.top:8888/api/private/v1/
   // http://119.23.53.78:8888/api/private/v1/
   // withCredentials: true,
