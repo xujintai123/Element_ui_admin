@@ -11,6 +11,8 @@ import axios from 'axios'
 const http = axios.create({
   timeout: 1000 * 30,
   baseURL: 'http://119.23.53.78:8888/api/private/v1/',
+  // https://www.liulongbin.top:8888/api/private/v1/
+  // http://119.23.53.78:8888/api/private/v1/
   // withCredentials: true,
   // headers: {
   //   'Content-Type': 'application/json; charset=utf-8'

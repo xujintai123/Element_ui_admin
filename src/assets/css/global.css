@@ -41,3 +41,12 @@ body,
  .el-cascader-menu {
   height: 400px;
 } 
+
+ .el-breadcrumb-item {
+   font-size: 20px!important;
+ }
+
+ /* 富文本编辑器 */
+ .ql-editor {
+   min-height: 420px;
+ }
