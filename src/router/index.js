@@ -7,9 +7,10 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+
 import Login from 'components/Login.vue'
 import Home from 'components/Home.vue'
-
 // 子路由
 import Welcome from 'components/Welcome.vue'
 import Users from 'components/user/Users.vue'
@@ -45,8 +46,31 @@ const routes = [
       { path: '/reports', component: Report },
     ]
   },
-
 ]
+
+
+//路由懒加载 （使用路由懒加载进行按需加载）
+// const routes = [
+//   { path: '/', redirect: '/login' },
+//   { path: '/login', component: () => import('components/Login.vue') },
+//   {
+//     path: '/home/',
+//     component: () => import('components/Home.vue'),
+//     redirect: '/welcome',
+//     children: [
+//       { path: '/welcome', component: () => import('components/Welcome.vue') },
+//       { path: '/users', component: () => import('components/user/Users.vue') },
+//       { path: '/rights', component: () => import('components/power/Rights.vue') },
+//       { path: '/roles', component: () => import('components/power/Roles.vue') },
+//       { path: '/categories', component: () => import('components/goods/Cate.vue') },
+//       { path: '/params', component: () => import('components/goods/Params.vue') },
+//       { path: '/goods', component: () => import('components/goods/List.vue') },
+//       { path: '/goods/add', component: () => import('components/goods/Add.vue') },
+//       { path: '/orders', component: () => import('components/order/Order.vue') },
+//       { path: '/reports', component: () => import('components/report/Report.vue') },
+//     ]
+//   },
+// ]
 
 
 
