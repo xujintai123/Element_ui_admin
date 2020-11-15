@@ -38,7 +38,7 @@
             <!-- 展开行 -->
             <el-table-column type="expand">
               <!-- 循环渲染Tag标签 -->
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-tag
                   v-for="(item,index) in scope.row.attr_vals"
                   :key="index"
@@ -69,7 +69,7 @@
             <el-table-column align="center" prop="attr_name" label="参数名称" width="600"></el-table-column>
             <el-table-column align="center" label="操作" width="600">
               <!-- 模板插槽 -->
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-button
                   size="mini"
                   type="primary"
@@ -97,7 +97,7 @@
             <!-- 展开行 -->
             <el-table-column type="expand">
               <!-- 循环渲染Tag标签 -->
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-tag
                   v-for="(item,index) in scope.row.attr_vals"
                   :key="index"
