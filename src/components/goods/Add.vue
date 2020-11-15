@@ -64,7 +64,7 @@
 
           <!-- 商品参数 -->
           <el-tab-pane name="1" label="商品参数">
-            <el-form-item v-for="item1 in cateParams" :key="item1.attr_id" :label="item1.attr_name">
+            <el-form-item v-for="(item1,index) in manyData" :key="index" :label="item1.attr_name">
               <!-- 复选按钮 -->
               <el-checkbox-group v-model="item1.attr_vals">
                 <el-checkbox
@@ -78,7 +78,7 @@
           </el-tab-pane>
           <!-- 商品属性 -->
           <el-tab-pane name="2" label="商品属性">
-            <el-form-item v-for="item1 in cateParams" :key="item1.attr_id" :label="item1.attr_name">
+            <el-form-item v-for="item1 in onlyData" :key="item1.attr_id" :label="item1.attr_name">
               <el-input v-model="item1.attr_vals"></el-input>
             </el-form-item>
           </el-tab-pane>
@@ -132,9 +132,9 @@ data(){
     //商品信息提交表单
      goodsAddForm:{
       goods_name:'',
-      goods_price:null,
-      goods_weight:null,
-      goods_number:null,
+      goods_price:0,
+      goods_weight:0,
+      goods_number:0,
       goods_cat:[],
       // 图片数组
       pics:[],
@@ -163,8 +163,6 @@ data(){
      },
     //商品分类总数据
      cateList:[],
-     //每条商品参数数据
-     cateParams:[],
      //请求商品分类数据query
      query:{
        type:'',
@@ -211,18 +209,17 @@ methods:{
         if(res.meta.status!==200)
         return this.$message.error('服务器繁忙，数据获取失败')
         //将参数数据赋值给cateParams
-        //将attrsel转化为数组形式
-         res.data.forEach(item => {
-        
-         item.attr_vals = item.attr_vals.length===0?[]:item.attr_vals.split(' ')
-            console.log(item.attr_vals);
-        })
        
-        this.cateParams=res.data  
 
-        sel==="many"?this.manyData=res.data:this.onlyData=res.data
-        console.log(this.manyData);
-        console.log(this.onlyData);
+  
+          //将attr_vals转化为数组形式(当数据为many时，因为双向绑定了复选框checkbox-group（需要绑定数组）；而only时使用input，不能双向绑定数组)
+           if(sel==='many'){
+             res.data.forEach(item => {
+               item.attr_vals = item.attr_vals.length===0?[]:item.attr_vals.split(' ')
+             })
+           }
+             sel==="many"?this.manyData=res.data:this.onlyData=res.data
+     
    },
     //监听级联选择器中选项变化
     selectedCateChange(){
@@ -295,19 +292,20 @@ methods:{
          this.onlyData.forEach(item => {
            const objParams = {
              attr_id:item.attr_id,
-             attr_value:item.attr_vals.join(' ')
+             attr_value:item.attr_vals
            }
           form.attrs.push(objParams)
        })
       
-       console.log(form.attrs);
+      //  console.log(form.attrs);
 
        //发起请求添加商品
        //商品的名称必须是唯一的
        const {data:res} = await this.$http.post('goods',form)
+      //  console.log(res);
        
        if(res.meta.status!==201) 
-       return this.$message.error('添加商品失败')
+       return this.$message.error('添加商品失败,请勿使用重复的商品名称')
 
        this.$message.success('商品添加成功')
        this.$router.push('/goods')
