@@ -114,7 +114,6 @@ methods:{
             //侧边栏数据请求成功;赋值给menusData
             if(data.meta.status===200){
               this.menusData=data.data
-
             }
             //数据请求失败
             else{
