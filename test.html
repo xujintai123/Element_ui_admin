@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    /* flex 布局 */
+    /* #father {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 400px;
+      width: 600px;
+      background-color: pink;
+    }
+
+    .span1,
+    .span2,
+    .span3 {
+      flex-grow: 1;
+      margin-top: 5px;
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      background-color: gray;
+    }
+
+    #father .span3 {
+      flex-grow: 2;
+      align-self: stretch;
+    } */
+
+    span {
+      font-size: 2em;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 50px 150px 250px;
+      /* 定义每一列的列宽 */
+      grid-template-rows: 50px 50px 50px;
+      /* 定义每一行的行高 */
+      /* grid-template-columns: repeat(3, 33.33%);
+      grid-template-rows: repeat(3, 33.33%); */
+
+      /* grid-template-columns: repeat(2, 100px 20px 80px);
+      grid-template-rows: repeat(3, 100px);
+      font-size: 2em;
+      text-align: center;
+      border: 1px solid #e5e4e9; */
+    }
+
+    .item {
+      font-size: 2em;
+      text-align: center;
+      border: 1px solid #e5e4e9;
+    }
+
+    .item-1 {
+      background-color: #ef342a;
+    }
+
+    .item-2 {
+      background-color: #f68f26;
+    }
+
+    .item-3 {
+      background-color: #4ba946;
+    }
+
+    .item-4 {
+      background-color: #0376c2;
+    }
+
+    .item-5 {
+      background-color: #c077af;
+    }
+
+    .item-6 {
+      background-color: #f8d29d;
+    }
+
+    .item-7 {
+      background-color: #b5a87f;
+    }
+
+    .item-8 {
+      background-color: #d0e4a9;
+    }
+
+    .item-9 {
+      background-color: #4dc7ec;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- flex布局 -->
+  <!-- <span id="father">
+    <span class="span1">1</span>
+    <span class="span2">2</span>
+    <span class="span3">3</span>
+  </span> -->
+
+
+  <!-- grid布局 -->
+  <span>foo</span>
+  <div class="container">
+    <div class="item item-1">1</div>
+    <div class="item item-2">2</div>
+    <div class="item item-3">3</div>
+    <div class="item item-4">4</div>
+    <div class="item item-5">5</div>
+    <div class="item item-6">6</div>
+    <div class="item item-7">7</div>
+    <div class="item item-8">8</div>
+    <div class="item item-9">9</div>
+  </div>
+  <span>bar</span>
+
+
+
+  <script>
+
+
+
+
+    //对象与Object的关系,以及Object与null的关系?
+    //所有的对象都是Object的实例,
+    //null是原型链的顶层
+    var obj = {}
+    console.log(obj instanceof Object);//true                 //所有的对象都是Object的实例,
+    console.log(typeof null);//object                         // null属于对象，但是没有__proto__
+    console.log(null instanceof Object);//fase                // null是对象但并不是Object的实例，null属于顶层对象
+    console.log(Object.prototype.__proto__ === null); //true  //Object原型对象的__proto__指向null
+
+
+
+    //数组与Array的关系,以及Array与Object的关系?
+    //所有的数组都是Array的实例,Array是Object的实例 
+    var arr = []
+    console.log(arr.__proto__ === Array.prototype);//true
+    console.log(Array.prototype.__proto__ === Object.prototype);//true
+    console.log(Array instanceof Object); //true
+
+
+
+    //函数与Function的关系,以及Function与Object的关系?
+    //所有的函数都是Function的实例,Function是Object的实例
+    function x() { }
+    console.log(x instanceof Function);//true
+    console.log(Function.prototype.__proto__ === Object.prototype);//true
+    console.log(Function instanceof Object); //true
+
+
+
+
+  </script>
+</body>
+
+</html>
