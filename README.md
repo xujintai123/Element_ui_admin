@@ -1,24 +1,24 @@
-# element_ui_admin
-
-## Project setup
+# 基于Element UI 的后台管理系统
+### 商品管理列表下商品列表的添加商品功能中，不能添加名称重复的商品。
+### 即使有些添加过的但又被删除的商品，你可能在搜索框搜不到的商品名称，但它确实被创建过(虽然已经被删除)；这类名称也是不能再被创建的；
+### 例如我创建过商品名称111，然后删除了这个商品；111名称的商品确实不能在页面上搜索到、但由于它确实已经被创建过，所以111商品名称就不能再次使用。
+### 如果在添加商品过程中提示商品名称已存在，那就不妨换一个名称！
+### 严格的说，这就是“不能创建已创建过（即使现在已经被删除但它已经创建过）的名称”和“不能创建正存在的名称”的区别！
+## 安装
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 运行编译项目
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包项目到生产环境
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
