@@ -30,7 +30,7 @@ import httpRequest from '@/utils/httpRequest' // api: https://github.com/axios/a
 Vue.component('TableTree', TableTree)
 
 //将富文本编辑器注册为全局组件
-Vue.use(VueQuillEditor, /* { default global options } */)
+Vue.use(VueQuillEditor, /* { default global options } */ )
 
 
 

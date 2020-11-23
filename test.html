@@ -6,160 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    * {
-      padding: 0;
-      margin: 0;
-    }
-
-    /* flex 布局 */
-    /* #father {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      height: 400px;
-      width: 600px;
-      background-color: pink;
-    }
-
-    .span1,
-    .span2,
-    .span3 {
-      flex-grow: 1;
-      margin-top: 5px;
-      display: inline-block;
-      height: 50px;
-      width: 50px;
-      background-color: gray;
-    }
-
-    #father .span3 {
-      flex-grow: 2;
-      align-self: stretch;
-    } */
-
-    span {
-      font-size: 2em;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: 50px 150px 250px;
-      /* 定义每一列的列宽 */
-      grid-template-rows: 50px 50px 50px;
-      /* 定义每一行的行高 */
-      /* grid-template-columns: repeat(3, 33.33%);
-      grid-template-rows: repeat(3, 33.33%); */
-
-      /* grid-template-columns: repeat(2, 100px 20px 80px);
-      grid-template-rows: repeat(3, 100px);
-      font-size: 2em;
-      text-align: center;
-      border: 1px solid #e5e4e9; */
-    }
-
-    .item {
-      font-size: 2em;
-      text-align: center;
-      border: 1px solid #e5e4e9;
-    }
-
-    .item-1 {
-      background-color: #ef342a;
-    }
-
-    .item-2 {
-      background-color: #f68f26;
-    }
-
-    .item-3 {
-      background-color: #4ba946;
-    }
-
-    .item-4 {
-      background-color: #0376c2;
-    }
-
-    .item-5 {
-      background-color: #c077af;
-    }
-
-    .item-6 {
-      background-color: #f8d29d;
-    }
-
-    .item-7 {
-      background-color: #b5a87f;
-    }
-
-    .item-8 {
-      background-color: #d0e4a9;
-    }
-
-    .item-9 {
-      background-color: #4dc7ec;
+    .btn {
+      color: #000;
     }
   </style>
 </head>
 
 <body>
-  <!-- flex布局 -->
-  <!-- <span id="father">
-    <span class="span1">1</span>
-    <span class="span2">2</span>
-    <span class="span3">3</span>
-  </span> -->
-
-
-  <!-- grid布局 -->
-  <span>foo</span>
-  <div class="container">
-    <div class="item item-1">1</div>
-    <div class="item item-2">2</div>
-    <div class="item item-3">3</div>
-    <div class="item item-4">4</div>
-    <div class="item item-5">5</div>
-    <div class="item item-6">6</div>
-    <div class="item item-7">7</div>
-    <div class="item item-8">8</div>
-    <div class="item item-9">9</div>
-  </div>
-  <span>bar</span>
-
-
+  <button class="btn">btn</button>
 
   <script>
 
-    function x() {
-
-    }
-
-    //为函数x的prototype原型对象添加add方法
-    x.prototype.add = function (a) {
-      return a
-    }
-
-
-    var xxx = new x()
-    console.log(xxx.add);//函数add   
-    console.log(x.add);//undefined 
-    //x的prototype拥有add，x的__proto__没有add；结果：x访问不到函数add
-    //xxx的prototype没有add，xxx的__proto__指向 x的prototype:里面拥有add；结果：x可以访问到函数add
-    //可以看出原型链的访问顺序是通过对象（实例对象或者函数对象）的__proto__属性往上查找的,和函数自身的prototype无关，
-    //函数无法访问到定义在自己prototype中的方法（但可以访问prototype里面的__proto__）
-
-    console.log(x.constructor);//Function函数 
-    // x的__proto__指向的Function的prototype中的constructor（只会沿着__proto__去寻找constructor）
-    console.log(x.prototype.constructor);//x函数
-    // x的prototype中的constructor
-
-
-    //函数无法访问到定义在自己prototype中的方法（但可以访问prototype里面的__proto__）；
-    //当对象（包括函数对象）自身寻找不到属性或者方法时就会沿着自己的__proto__一层一层去寻找
-    //比如fn沿着__proto__在Function的prototype中找不到，就会继续在Function的prototype沿着__proto__
-    //访问Object的prototype；然而Object的prototype再沿着__proto__寻找就是null
-
   </script>
+
 </body>
 
 </html>
