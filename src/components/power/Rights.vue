@@ -31,34 +31,37 @@
     </el-card>
   </div>
 </template>
-  
+
 
 <script>
-export default {
-data(){
-return {
-  //权限列表
- rightsList:[]
-}
-},
-created(){
-  //获取所有权限
-  this.getRightsList()
-},
-methods:{
-  async getRightsList(){
-  const {data:res} =  await this.$http.get('rights/list')
-    if(res.meta.status!==200){
-      return this.$message.error('服务器繁忙，获取数据失败')
-    }
+  export default {
+    data() {
+      return {
+        //权限列表
+        rightsList: []
+      }
+    },
+    created() {
+      //获取所有权限
+      this.getRightsList()
+    },
+    methods: {
+      async getRightsList() {
+        const {
+          data: res
+        } = await this.$http.get('rights/list')
+        if (res.meta.status !== 200) {
+          return this.$message.error('服务器繁忙，获取数据失败')
+        }
 
-    this.rightsList=res.data
-    // console.log(this.rightsList);
+        this.rightsList = res.data
+        // console.log(this.rightsList);
+      }
+    }
   }
-}
-}
+
 </script>
 
-<style  lang="less" scoped>
+<style lang="less" scoped>
 
 </style>

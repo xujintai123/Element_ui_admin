@@ -26,24 +26,58 @@ import Report from 'components/report/Report.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  { path: '/', redirect: '/login' },
-  { path: '/login', component: Login },
+const routes = [{
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    component: Login
+  },
   {
     path: '/home/',
     component: Home,
     redirect: '/welcome',
-    children: [
-      { path: '/welcome', component: Welcome },
-      { path: '/users', component: Users },
-      { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles },
-      { path: '/categories', component: Cate },
-      { path: '/params', component: Params },
-      { path: '/goods', component: List },
-      { path: '/goods/add', component: Add },
-      { path: '/orders', component: Order },
-      { path: '/reports', component: Report },
+    children: [{
+        path: '/welcome',
+        component: Welcome
+      },
+      {
+        path: '/users',
+        component: Users
+      },
+      {
+        path: '/rights',
+        component: Rights
+      },
+      {
+        path: '/roles',
+        component: Roles
+      },
+      {
+        path: '/categories',
+        component: Cate
+      },
+      {
+        path: '/params',
+        component: Params
+      },
+      {
+        path: '/goods',
+        component: List
+      },
+      {
+        path: '/goods/add',
+        component: Add
+      },
+      {
+        path: '/orders',
+        component: Order
+      },
+      {
+        path: '/reports',
+        component: Report
+      },
     ]
   },
 ]
