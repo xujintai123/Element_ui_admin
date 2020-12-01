@@ -16,10 +16,16 @@
   <button class="btn">btn</button>
 
   <script>
-    function a() {
+    function fn() {}
+    fn.prototype.x = 1
+    var obj1 = new fn()
 
-    }
-    console.log(undefined);
+    console.log(obj1); //obj1.__proto__为{x：2,constructor:fn(),__proto__:Object.prototype}
+    // 25行之前未执行 fn.prototype.x = 2，实际上obj1的__proto__指向的prototype是可以动态变化的，
+    // obj1的__proto__根据prototype变化而变化
+    console.log(obj1.x); // 1 
+    //(25行之前未执行 fn.prototype.x = 2)
+    fn.prototype.x = 2
   </script>
 
 </body>

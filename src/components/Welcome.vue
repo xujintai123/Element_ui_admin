@@ -1,6 +1,6 @@
 <template>
   <div id="welcome">
-    <div v-if="isLoading">Loading....</div>
+    <div v-if="isLoading">Loading......</div>
     <button @click="setHeader">按钮</button>
   </div>
 </template>
