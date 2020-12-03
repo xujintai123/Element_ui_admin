@@ -240,7 +240,17 @@
       }
     },
     created() {
+      console.log('user页面created');
       this.getUserList()
+    },
+    destroyed() {
+      console.log('user页面destroyed');
+    },
+    activated() {
+      console.log('user页面activated');
+    },
+    deactivated() {
+      console.log('user页面deactivated');
     },
     methods: {
       // 数据请求

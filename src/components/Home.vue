@@ -47,7 +47,9 @@
       <!-- 右侧内容 -->
       <el-main>
         <!-- 路由占位符 -->
+        <!-- <keep-alive> </keep-alive> -->
         <router-view></router-view>
+
       </el-main>
     </el-container>
   </el-container>
