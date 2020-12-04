@@ -16,30 +16,14 @@
   <button class="btn">btn</button>
 
   <script>
-    function f1() {
-      var a = 1
-
-      function add() {
-        a++
-        console.log(a);
-        return a
-      }
-
-      function reduce() {
-        a--
-        console.log(a);
-        return a
-      }
-      return {
-        add,
-        reduce
-      }
+    var start = Date.now()
+    document.querySelector('button').onclick = function () {
+      console.log('click', Date.now() - start);
     }
+    for (var i = 1; i < 1000000000; i++) {
 
-    var x = f1()
-    x.add()
-    x.add()
-    x.reduce()
+    }
+    console.log(1);
   </script>
 
 </body>

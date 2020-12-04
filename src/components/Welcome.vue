@@ -11,7 +11,7 @@
 <script>
   //测试设置请求头、设置响应头
   import axios from 'axios'
-
+  //子组件
   import TestOne from 'components/test/TestOne'
   export default {
     data() {
@@ -25,6 +25,7 @@
     },
     //打印顺序为6,3,7,8,1,2,9；说明axios拦截器只有在发起axios请求才会触发（axios拦截器是异步的）
     created() {
+      console.log('welcome created');
       axios.interceptors.request.use(config => {
         this.isLoading = true
         // console.log(1);
@@ -43,6 +44,15 @@
     // deactivated() {
     //   console.log('welcome页面deactivated');
     // },
+    mounted() {
+      console.log('父组件welcome mounted');
+    },
+    beforeDestroy() {
+      console.log('父组件welcome beforeDestroy');
+    },
+    destroyed() {
+      console.log('父组件welcome destroyed');
+    },
     methods: {
       //监听按钮点击
       setHeader() {

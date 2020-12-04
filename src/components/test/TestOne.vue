@@ -10,12 +10,21 @@
 </template>
 
 <script>
+  //混入
+  import MinxinTest from 'assets/mixin/mixin-test'
   export default {
+    mixins: [MinxinTest],
     created() {
       console.log('testOne created');
     },
+    mounted() {
+      console.log('testOne mounted');
+    },
     beforeDestroy() {
       console.log('testOne beforeDestroy');
+    },
+    destroyed() {
+      console.log('testOne destroyed');
     },
     activated() {
       console.log('testOne activated');
